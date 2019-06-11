@@ -31,6 +31,7 @@ $factory->define(User::class, function (Faker $faker) {
  */
 $factory->state(User::class, 'admin', [
       'email' => 'admin@test.ru',
+      'password' => bcrypt('12345678'),
       'role' => 'admin',
 ]);
 /**
