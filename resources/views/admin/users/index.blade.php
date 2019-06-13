@@ -6,16 +6,19 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                Пользователи
+                <h3>
+                  Пользователи
+                   <a class="btn btn-success float-right" href="{{ route('admin.users.create')}}" role="button">Добавить</a>
+                </h3>
                 </div>
                 <div class="card-body">
-                    <table class="table">
+                    <table class="table table-bordered">
                       <thead class="thead-dark">
                         <tr>
-                          <th scope="col">#</th>
-                          <th scope="col">Ф.И.О.</th>
-                          <th scope="col">Должность</th>
-                          <th scope="col" class="text-right">Действие</th>
+                          <th scope="col" style="width: 1%">#</th>
+                          <th scope="col" style="width: 20%">Ф.И.О.</th>
+                          <th scope="col" style="width: 20%">Должность</th>
+                          <th scope="col" class="text-right" style="width: 20%">Действие</th>
                         </tr>
                       </thead>
                       <tbody>
