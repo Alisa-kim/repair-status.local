@@ -31,7 +31,6 @@ class UserController extends Controller
      */
     public function create()
     {
-        // dd(__METHOD__);
         return view('admin.users.create');
     }
 
@@ -56,7 +55,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $item = User::findOrFail($id);
+        return view('admin.users.show', compact('item'));
     }
 
     /**
@@ -67,7 +67,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = User::findOrFail($id);
+        return view('admin.users.edit', compact('item'));
     }
 
     /**
@@ -79,7 +80,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item = User::findOrFail($id);
+        if ($request['password'] == null) {
+            $item->update($request->except('password'));
+        } else {
+            $request['password'] = bcrypt($request['password']);
+            $item->update($request->all());
+        }
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -90,6 +98,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = User::findOrFail($id);
+        $item->delete();
+        return redirect()->route('admin.users.index');
     }
 }

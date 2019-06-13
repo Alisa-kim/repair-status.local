@@ -8,7 +8,9 @@
                 <div class="card-header">
                 <h3>
                   Пользователи
-                   <a class="btn btn-success float-right" href="{{ route('admin.users.create')}}" role="button">Добавить</a>
+                  <a class="btn btn-success float-right" href="{{ route('admin.users.create')}}" role="button">
+                    Добавить
+                  </a>
                 </h3>
                 </div>
                 <div class="card-body">
@@ -28,12 +30,24 @@
                                 <th scope="row">{{$loop->iteration }}</th>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->position}}</td>
-                                <td> {{-- кнопки для действий --}} </td>
+                                <td>
+                                  <a class="btn btn-sm btn-info" id="edit" href="{{ route('admin.users.show', $item->id) }}">
+                                        Просмотреть
+                                    </a>
+                                    <a class="btn btn-sm btn-info" id="edit" href="{{ route('admin.users.edit', $item->id) }}">
+                                        Редактировать
+                                    </a>
+                                    <form action="{{ route('admin.users.destroy', $item->id) }}" method="post" class="float-right">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-sm btn-danger" type="submit">Удалить</button>
+                                    </form>
+                                </td>
                             </tr>
                         @empty
                             <tr>
                                 <td colspan="4" class="text-center">
-                                    нет пользователей
+                                  нет пользователей
                                 </td>
                             </tr>
                         @endforelse
